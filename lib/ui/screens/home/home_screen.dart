@@ -6,8 +6,9 @@ import 'package:flubank/ui/shared/constants.dart';
 import 'package:flubank/ui/widgets/amount.dart';
 
 class HomeScreen extends StatefulWidget {
+
   static String routeName = 'homeScreen';
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key key}) : super(key: key);  
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,15 +16,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   
-  final double _borderRadius = 24;
+  final scrollController = ScrollController();
+
+  final double _borderRadius = 24;  
 
   var items = [
     CardInfo('Sixto Romero', 257200, Color(0xff6DC8F3), Color(0xff73A1F9)),
     CardInfo('Pierre Cervero', 257200, Color(0xffFFB157), Color(0xffFFA057)),
+    CardInfo('Leydi Pulido', 257200, Color(0xff42E695), Color(0xff3BB2B8)),
     CardInfo('Antonio Sierra', 257200, Color(0xffFF5B95), Color(0xffF8556D)),
     CardInfo('Jonatan Padilla', 257200, Color(0xffD76EF5), Color(0xff8F7AFE)),
-    CardInfo('Leydi Pulido', 257200, Color(0xff42E695), Color(0xff3BB2B8)),
-  ];  
+    CardInfo('Nelson Londoño', 257200, Color(0xff92d0d0), Color(0xff567777)),
+    
+  ];
+
+  void onListen() {
+    print('scrollController: ${scrollController.offset}');
+  }
+
+  @override
+  void initState() {
+    scrollController.addListener(onListen);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(onListen);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Inicio'),
       ),
       body: ListView.builder(
+        controller: scrollController,
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Center(

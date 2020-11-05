@@ -1,5 +1,4 @@
-import 'package:flubank/ui/screens/home/home_screen.dart';
-//import 'package:flubank/ui/screens/splash/splash_screen.dart';
+import 'package:flubank/ui/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'routes.dart';
@@ -15,8 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'FluBank',
       theme: lightTheme(),
       debugShowCheckedModeBanner: false,
-      //initialRoute: SplashScreen.routeName,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: appRoutes,
     );
   }
